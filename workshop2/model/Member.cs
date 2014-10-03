@@ -32,7 +32,7 @@ namespace workshop2.model
             
         }
 
-        public Member(JObject memberJson)
+        internal Member(JObject memberJson)
             : this()
         {
             Boats = memberJson.GetValue(boats).ToList().ConvertAll(JsonBoat => new Boat((JObject) JsonBoat));
@@ -41,7 +41,7 @@ namespace workshop2.model
             SocialSecurityNumber = memberJson.GetValue(socialSecurityNumber).ToString();
         }
 
-        public IDictionary ToJson()
+        internal IDictionary ToJson()
         {
             return new Dictionary<string, object>
             {   

@@ -7,9 +7,6 @@ using System.Threading.Tasks;
 using MongoDB.Driver;
 using MongoDB.Bson.IO;
 
-
-
-
 namespace workshop2.model.Repositories
 {
     public abstract class Repository
@@ -18,11 +15,10 @@ namespace workshop2.model.Repositories
         protected MongoDatabase _db;
         protected JsonWriterSettings jsonSettings;
 
-        public Repository() 
+        internal Repository() 
         {
             var client = new MongoClient(_connectionString);
             _db = client.GetServer().GetDatabase("ooadw2");
-
             jsonSettings = new JsonWriterSettings { OutputMode = JsonOutputMode.Strict };
         }
     }

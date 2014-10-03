@@ -9,14 +9,7 @@ using System.Threading.Tasks;
 
 namespace workshop2.model
 {
-    public enum BoatType
-    {
-        Sailboat,
-        Motorsailor,
-        Motorboat,
-        Canoe,
-        Other
-    }
+    
 
     struct Boat
     {

@@ -15,11 +15,11 @@ namespace workshop2.model.Repositories
     {
         const string collectionName = "memberRegister";
 
-        public void Add(Member member)
+        internal void Add(Member member)
         {
             _db.GetCollection(collectionName).Insert(new BsonDocument(member.ToJson()));
         }
-        public IEnumerable<Member> GetAll() 
+        internal IEnumerable<Member> GetAll() 
         { 
             var memberList = new List<Member>();
             foreach (var memberBson in _db.GetCollection(collectionName).FindAll()) 
