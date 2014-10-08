@@ -15,7 +15,7 @@ namespace workshop2.model.Repositories
         protected MongoDatabase _db;
         protected JsonWriterSettings jsonSettings;
 
-        internal Repository() 
+        protected Repository() 
         {
             var client = new MongoClient(_connectionString);
             _db = client.GetServer().GetDatabase("ooadw2");
