@@ -7,6 +7,7 @@ using MongoDB.Bson;
 using System.Collections;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using MongoDB.Driver;
 
 
 namespace workshop2.model.Repositories
@@ -15,9 +16,13 @@ namespace workshop2.model.Repositories
     {
         const string collectionName = "memberRegister";
 
-        internal void Add(Member member)
+
+        internal void Save(Member member, Member updatedMember)
         {
-            _db.GetCollection(collectionName).Insert(new BsonDocument(member.ToJson()));
+            var options = new MongoUpdateOptions().Flags = UpdateFlags.Upsert;
+                _db.GetCollection(collectionName).Update(
+                    new QueryDocument (member.ToJson()),
+                    new UpdateDocument(updatedMember.ToJson()),options);
         }
         internal IEnumerable<Member> GetAll() 
         { 

@@ -9,8 +9,11 @@ using System.Threading.Tasks;
 
 namespace workshop2.model
 {
-    struct Member
+    class Member : ICloneable
     {
+        private string _name;
+        private string _socialSecurityNumber;
+
         private const string name = "name";
         private const string memberNumber = "memberNumber";
         private const string socialSecurityNumber = "socialSecurityNumber";
@@ -18,19 +21,46 @@ namespace workshop2.model
 
 
         public List<Boat> Boats { get; set; }
-        public string Name {get; set;}
-        public string SocialSecurityNumber {get; set;}
+        public string Name
+        {
+            get
+            {
+                return _name;
+            }
+            set
+            {
+                if (String.IsNullOrEmpty(value)) 
+                {
+                    throw new ArgumentException("Member name can not be empty");
+                }
+                _name = value;
+            }
+        }
+        public string SocialSecurityNumber
+        {
+            get
+            {
+                return _socialSecurityNumber;
+            }
+            set
+            {
+                if (String.IsNullOrEmpty(value))
+                {
+                    throw new ArgumentException("Social security number can not be empty");
+                }
+                _socialSecurityNumber = value;
+            }
+        }
         public long MemberNumber {get; set;}
 
-        public Member(string name, long memberNumber, string socialSecurityNumber)
-            : this()
+        public Member()
         {
+
+            MemberNumber = DateTime.UtcNow.ToFileTimeUtc();
             Boats = new List<Boat>();
-            Name = name;
-            MemberNumber = memberNumber;
-            SocialSecurityNumber = socialSecurityNumber;
-            
         }
+
+        
 
         internal Member(JObject memberJson)
             : this()
@@ -51,7 +81,12 @@ namespace workshop2.model
                 {socialSecurityNumber, SocialSecurityNumber}
             };
         }
-  
+
+
+        public object Clone()
+        {
+            return this.MemberwiseClone();
+        }
     }
    
 }
