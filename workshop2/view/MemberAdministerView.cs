@@ -10,7 +10,7 @@ namespace workshop2.view
     class MemberAdministerView
     {
 
-        internal Member Administer(Member member)
+        internal void Administer(Member member)
         {
           
             Console.WriteLine("Enter name:  [{0}]", member.Name);
@@ -50,7 +50,6 @@ namespace workshop2.view
                     Console.WriteLine("You must fill in a social security number.");
                 }
             } while (true);         
-            return member;
         }
 
     }

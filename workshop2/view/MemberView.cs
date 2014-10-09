@@ -13,6 +13,7 @@ namespace workshop2.view
         {
             Edit,
             Delete,
+            AddBoat,
             Return
         }
         private BoatView _boatView;
@@ -34,6 +35,7 @@ namespace workshop2.view
             Console.WriteLine();
             Console.WriteLine("Press E to edit member.");
             Console.WriteLine("Press D to delete member.");
+            Console.WriteLine("Press B to add boat.");
             Console.WriteLine("Press R to return.");
         }
         internal MenuItem GetChosenMenuItem()
@@ -54,6 +56,9 @@ namespace workshop2.view
                     case "r":
                     case "R":
                         return MenuItem.Return;
+                    case "b":
+                    case "B":
+                        return MenuItem.AddBoat;
                     default:
                         Console.WriteLine("The chosen menuitem does not exist.");
                         break;

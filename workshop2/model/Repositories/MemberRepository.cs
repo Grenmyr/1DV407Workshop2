@@ -32,8 +32,7 @@ namespace workshop2.model.Repositories
                 new QueryDocument(oldMember.ToJson()),
                 new UpdateDocument(updatedMember.ToJson()));
         }
-
-       
+ 
         internal IEnumerable<Member> GetAll() 
         { 
             var memberList = new List<Member>();

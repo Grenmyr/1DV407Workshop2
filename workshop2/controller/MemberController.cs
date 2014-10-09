@@ -12,10 +12,15 @@ namespace workshop2.controller
     {
         private MemberView _memberView;
         private MemberAdministerController _memberAdministerController;
-        public MemberController(MemberView memberView, MemberAdministerController memberAdministerController)
+        private BoatAdministerController _boatAdministerController;
+        public MemberController(
+            MemberView memberView,
+            MemberAdministerController memberAdministerController,
+            BoatAdministerController boatAdministerController)
         {
             _memberView = memberView;
             _memberAdministerController = memberAdministerController;
+            _boatAdministerController = boatAdministerController;
         }
 
         internal void Run(Member member)
@@ -31,7 +36,10 @@ namespace workshop2.controller
                         break;
                     case MemberView.MenuItem.Delete:
                         _memberAdministerController.Delete(member);
-                        break;
+                        return;
+                    case MemberView.MenuItem.AddBoat:
+                        _boatAdministerController.Add(member);
+                        return;
                     case MemberView.MenuItem.Return:
                         return;
                     default:

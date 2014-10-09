@@ -27,6 +27,8 @@ namespace workshop2
             builder.RegisterType<MainView>();
             builder.RegisterType<MemberAdministerView>();
             builder.RegisterType<MemberAdministerController>();
+            builder.RegisterType<BoatAdministerController>();
+            builder.RegisterType<BoatAdministerView>();
 
             var injector = builder.Build();
             var mainController = injector.Resolve<MainController>();
