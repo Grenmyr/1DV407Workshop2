@@ -16,14 +16,24 @@ namespace workshop2.model.Repositories
     {
         const string collectionName = "memberRegister";
 
-
-        internal void Save(Member member, Member updatedMember)
+        internal void Add(Member member)
         {
-            var options = new MongoUpdateOptions().Flags = UpdateFlags.Upsert;
-                _db.GetCollection(collectionName).Update(
-                    new QueryDocument (member.ToJson()),
-                    new UpdateDocument(updatedMember.ToJson()),options);
+            _db.GetCollection(collectionName).Insert(new BsonDocument(member.ToJson()));
         }
+
+        internal void Delete(Member member)
+        {
+            _db.GetCollection(collectionName).Remove(new QueryDocument(member.ToJson()));
+        }
+        
+        internal void Update(Member oldMember, Member updatedMember)
+        {
+            _db.GetCollection(collectionName).Update(
+                new QueryDocument(oldMember.ToJson()),
+                new UpdateDocument(updatedMember.ToJson()));
+        }
+
+       
         internal IEnumerable<Member> GetAll() 
         { 
             var memberList = new List<Member>();

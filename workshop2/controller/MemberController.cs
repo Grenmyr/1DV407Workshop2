@@ -30,7 +30,7 @@ namespace workshop2.controller
                         _memberAdministerController.Run(member);
                         break;
                     case MemberView.MenuItem.Delete:
-                        
+                        _memberAdministerController.Delete(member);
                         break;
                     case MemberView.MenuItem.Return:
                         return;

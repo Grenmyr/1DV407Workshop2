@@ -20,13 +20,27 @@ namespace workshop2.controller
         }
         internal void Run(Member member = null)
         {
+            bool creating = false;
             if (member == null)
             {
+                creating = true;
                 member = new Member();
             }
             var oldMember = (Member)member.Clone();
-            var updatedMember = _memberAdministerView.Administer(member);
-            _memberRepository.Save(oldMember, updatedMember);
+             _memberAdministerView.Administer(member);
+
+            if (creating)
+            {
+                _memberRepository.Add(member);
+            }
+            else 
+            {
+                _memberRepository.Update(oldMember,member);
+            }
+        }
+        internal void Delete(Member member)
+        {
+            _memberRepository.Delete(member);
         }
     }
 }
