@@ -11,21 +11,19 @@ namespace workshop2.model
 {
     
 
-    struct Boat
+    class Boat
     {
         private const string length = "length";
         private const string type = "type";
 
-        public double Length { get; set; }
-        public BoatType Type { get; set; }
+        internal double Length { get; set; }
+        internal BoatType Type { get; set; }
 
-        public Boat(BoatType type, double length) : this()
+        public Boat() 
         {
-            Length = length;
-            Type = type;
         }
         public Boat(JObject boatJson)
-            : this()
+            
         {          
             Length = (double)boatJson.GetValue(length);
             Type = (BoatType)(int)boatJson.GetValue(type);
@@ -36,9 +34,9 @@ namespace workshop2.model
         public IDictionary ToJson()
         {
             return new Dictionary<string, object>
-            {   
-                {length, Length},
-                {type, Type}
+            {               
+                {type, Type},
+                {length, Length}
             };
         }
     }

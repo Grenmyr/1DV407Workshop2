@@ -30,7 +30,7 @@ namespace workshop2.view
             
             while (true)
             {
-                input = Console.ReadLine();
+                input = Console.ReadLine().ToLower();
                 switch (input)
                 {
                     case "1":
@@ -40,10 +40,9 @@ namespace workshop2.view
                     case "3":
                         return MenuItem.NewMember;
                     case "q":
-                    case "Q":
                         return MenuItem.Quit;
                     default:
-                        Console.WriteLine("The chosen menuitem does not exist.");
+                        Console.WriteLine("Choose valid number.");
                         break;
                 }
             }

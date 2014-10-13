@@ -9,30 +9,17 @@ namespace workshop2.view
 {
     class BoatAdministerView
     {
+        private BoatView _boatView;
+        public BoatAdministerView(BoatView boatView) 
+        {
+            _boatView = boatView;
+        }
         internal Boat Administer(Boat boat)
         {
             {
+                Console.WriteLine("Enter boat type:");
+                boat.Type = _boatView.ChooseType();
 
-                Console.WriteLine("Enter type:  [{0}]", boat.Type);
-               /* do
-                {
-                    string input = Console.ReadLine();
-                    if (input == String.Empty)
-                    {
-                        input = boat.Type;
-                    }
-
-                    try
-                    {
-                        boat.Type = input;
-                        break;
-                    }
-                    catch
-                    {
-                        Console.WriteLine("You must fill in a type.");
-                    }
-                } while (true);*/
-                boat.Type = BoatType.Canoe;
                 Console.WriteLine("Enter boat length:  [{0}]", boat.Length);
                 do
                 {
@@ -48,7 +35,7 @@ namespace workshop2.view
                     }
                     catch
                     {
-                        Console.WriteLine("You must fill in a boat length.");
+                        Console.WriteLine("Please fill in valid boat length.");
                     }
                 } while (true);
                 return boat;

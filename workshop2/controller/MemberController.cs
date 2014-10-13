@@ -27,26 +27,40 @@ namespace workshop2.controller
         {
             do
             {
+                Boat boat;
                 _memberView.Render(member);
                 switch (_memberView.GetChosenMenuItem())
                 {
 
                     case MemberView.MenuItem.Edit:
-                        _memberAdministerController.Run(member);
+                        _memberAdministerController.Update(member);
                         break;
                     case MemberView.MenuItem.Delete:
                         _memberAdministerController.Delete(member);
                         return;
                     case MemberView.MenuItem.AddBoat:
                         _boatAdministerController.Add(member);
-                        return;
+                        break;
+                    case MemberView.MenuItem.EditBoat:
+                        boat = _memberView.GetChosenBoat(member.Boats);
+                        if (boat != null)
+                        {
+                            _boatAdministerController.Update(member, boat);
+                        }
+                        break;
+                    case MemberView.MenuItem.DeleteBoat:                       
+                         boat = _memberView.GetChosenBoat(member.Boats);
+                        if (boat != null)
+                        {
+                            _boatAdministerController.Delete(member, boat);
+                        }
+                        break;
                     case MemberView.MenuItem.Return:
                         return;
                     default:
                         throw new NotImplementedException("Menu item not implemented in MemberController.");
                 }
-            } while (true);
-            
+            } while (true);         
         }
     }
 }

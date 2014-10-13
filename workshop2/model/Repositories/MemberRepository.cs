@@ -26,10 +26,10 @@ namespace workshop2.model.Repositories
             _db.GetCollection(collectionName).Remove(new QueryDocument(member.ToJson()));
         }
         
-        internal void Update(Member oldMember, Member updatedMember)
+        internal void Update(Member originalMember, Member updatedMember)
         {
             _db.GetCollection(collectionName).Update(
-                new QueryDocument(oldMember.ToJson()),
+                new QueryDocument(originalMember.ToJson()),
                 new UpdateDocument(updatedMember.ToJson()));
         }
  

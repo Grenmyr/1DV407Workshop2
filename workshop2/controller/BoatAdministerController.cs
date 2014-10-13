@@ -21,18 +21,24 @@ namespace workshop2.controller
         internal void Add(Member member)
         {
             Boat boat = new Boat();
-            var oldMember = (Member)member.Clone();
-            var newBoat = _boatAdministerView.Administer(boat);
+            var originalMember = (Member)member.Clone();
+             boat = _boatAdministerView.Administer(boat);
 
-            member.Boats.Add(newBoat);
-            _memberRepository.Update(oldMember,member);
+             member.Boats.Add(boat);
+            _memberRepository.Update(originalMember,member);
         }
         internal void Update(Member member,Boat boat)
         {
-        
+            var originalMember = (Member)member.Clone();
+            int boatIndex = member.Boats.IndexOf(boat);
+            member.Boats[boatIndex] = _boatAdministerView.Administer(boat);
+            _memberRepository.Update(originalMember, member);
         }
         internal void Delete(Member member, Boat boat)
         {
+            var originalMember = (Member)member.Clone();
+            member.Boats.Remove(boat);
+            _memberRepository.Update(originalMember,member);
         }
     }
     

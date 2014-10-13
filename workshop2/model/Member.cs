@@ -20,8 +20,8 @@ namespace workshop2.model
         private const string boats = "boats";
 
 
-        public List<Boat> Boats { get; set; }
-        public string Name
+        internal List<Boat> Boats { get; set; }
+        internal string Name
         {
             get
             {
@@ -36,7 +36,7 @@ namespace workshop2.model
                 _name = value;
             }
         }
-        public string SocialSecurityNumber
+        internal string SocialSecurityNumber
         {
             get
             {
@@ -51,7 +51,7 @@ namespace workshop2.model
                 _socialSecurityNumber = value;
             }
         }
-        public long MemberNumber {get; set;}
+        internal long MemberNumber {get; set;}
 
         public Member()
         {
